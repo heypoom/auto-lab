@@ -1,21 +1,24 @@
 #!/usr/bin/env python3
 
-import pyautogui
 import time
+import pyautogui as ui
 
-print("Ready...")
+ui.FAILSAFE = True
 
-time.sleep(5)
 
-print("Activating...")
-pyautogui.click()
+def main():
+    w, h = ui.size()
+    print("Screen:", w, h)
 
-distance = 200
+    while True:
+        time.sleep(0.001)
 
-while distance > 0:
-  pyautogui.dragRel(distance, 0, duration = 0.2)
-  distance = distance - 5
-  pyautogui.dragRel(0, distance, duration = 0.2)
-  pyautogui.dragRel(-distance, 0, duration = 0.2)
-  distance = distance - 5
-  pyautogui.dragRel(0, -distance, duration = 0.2)
+        x, y = ui.position()
+
+        print(x, y)
+
+        ui.moveRel(10, 0)
+
+
+if __name__ == "__main__":
+    main()
